@@ -1,6 +1,6 @@
 const fs = require('fs');
-const glob = require("glob");
-const path = require("path");
+const glob = require('glob');
+const path = require('path');
 
 function walkUpToFindNodeModulesPath(context) {
   var tempPath = path.resolve(context, 'node_modules');
@@ -60,16 +60,13 @@ module.exports = function(source) {
 
         if (match.match(importSass)) {
           return '@import ' + fileName;
-
         } else if (match.match(importModules)) {
           var moduleName = obj + index;
           modules.push(moduleName);
           withModules = true;
           return 'import * as ' + moduleName + ' from ' + fileName;
-
         } else if (match.match(importFiles)) {
           return 'import ' + fileName;
-
         } else {
           self.emitWarning('Unknown import: "' + match + '"');
         }
